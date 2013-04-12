@@ -1,0 +1,26 @@
+;实用方法
+;将.data中的内容粘贴到你的.data中
+;将子程序咱贴到你的子程序的位置
+;在主程序中调用call 子程序名字即可
+
+任何一个程序都要包含stdio中的全部子程序
+例：将msgenter	db 0dh,0ah,'$'粘贴到数据段
+
+enter	proc;回车换行子程序
+	mov dx,offset msgenter;显示提示
+	call puts;输出字符串
+	ret
+enter	endp
+粘贴到代码子程序位置
+在主程序中call enter即可实现回车换行功能
+======================================================
+3.回车换行函数，实现回车换行功能，直接调用
+
+msgenter	db 0dh,0ah,'$'
+
+enter	proc;回车换行子程序
+	mov dx,offset msgenter;显示提示
+	call puts;输出字符串
+	ret
+enter	endp
+======================================================

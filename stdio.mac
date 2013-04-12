@@ -1,0 +1,30 @@
+;;getchar 输入字符函数，输入一个字符，al返回输入字符的asic;会破坏ax中的原始数据
+;;putchar 输出字符函数，要输出的字符放到dl
+;;puts    输出字符串，输出的字符串偏移地址放在 dx
+
+getchar	macro	;;输入字符子程序，al中放输入字符
+	mov ah,01h
+	int 21h;调用输入字符中断
+	endm
+
+putchar	macro char	;;输出一个字符，输出字符位于dl
+	push ax
+	push dx
+	mov dl,char
+	mov ah,02h
+	int 21h
+	pop dx
+	pop ax
+	endm
+
+puts	macro varMessage	;;varMessage为输出字符串标号
+	push ax
+	push dx
+	lea dx,varMessage
+	mov ah,09h
+	int 21h;调用09号功能
+	pop dx
+	pop ax
+	endm
+
+	
